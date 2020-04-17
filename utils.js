@@ -46,7 +46,7 @@ const addItemToShoppingCart = (item) => {
   // should add item to shopping cart
   for (let i = 0; i < shoppingCart.length; i++) {
     if (item.name === shoppingCart[i].name) {
-      shoppingCart[i].quanity += item.quantity
+      shoppingCart[i].quantity++
     }
   }
   shoppingCart.push(item)
@@ -54,14 +54,17 @@ const addItemToShoppingCart = (item) => {
 
 const removeItem = (item) => {
   for (let i = 0; i < shoppingCart.length; i++) {
-    if (item.name === shoppingCart[i].name) {
-      shoppingCart.splice(i, 1);
-
+    if (shoppingCart[i] === item) {
+      shoppingCart[i].quantity--
+      if (shoppingCart[i].quantity === 0) {
+        shoppingCart.splice(i, 1)
+      }
+      return
     }
   }
 }
 
 module.exports = {
   sayHello, area, perimeter, circleArea,
-  createItem, addItemToShoppingCart, removeItem, clearCart, getShoppingCart 
+  createItem, addItemToShoppingCart, removeItem, clearCart, getShoppingCart
 }

@@ -77,17 +77,24 @@ it("Should return the number of items in the cart", function() {
 })
 
 it("Should remove items from cart", function() {
+  utils.clearCart()
   const strawberry = utils.createItem("strawberry", 1.99)
-  utils.removeItem(strawberry)
-
-  // expect()
-})
+  utils.addItemToShoppingCart(strawberry)
+  const cart = utils.getShoppingCart()
+  expect(cart.length).to.equal(1)
+  utils.removeItem("strawberry")
+  expect(cart).to.have.lengthOf(0)
+  })
 
 // ========================================================
 // Stretch Challenges
 // ========================================================
 
 it("Should update the count of items in the cart")
+  const apple = utils.createItem("apple", "1")
+  utils.addItemToShoppingCart(apple)
+  utils.addItemToShoppingCart(apple)
+  expect(apple).to.have.property("quantity", 2)
 
 it("Should validate that an empty cart has 0 items")
   utils.clearCart()
